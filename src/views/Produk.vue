@@ -21,7 +21,7 @@
   </a>
   <span class="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-black text-center text-sm text-white">Sale</span>
   <div class="mt-4 px-5 pb-5">
-    <a href="#">
+    <a href="/singleproduk">
       <h5 class="text-xl font-semibold tracking-tight text-slate-900">Necklace L</h5>
     </a>
     <div class="mt-2.5 mb-5 flex items-center">
