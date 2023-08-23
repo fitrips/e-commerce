@@ -1,27 +1,155 @@
 <template>
-    <div class="flex h-screen w-full items-center justify-center bg-gray-100">
-  <div class="w-full max-w-3xl overflow-hidden rounded-lg bg-white shadow-lg sm:flex">
-    <div class="m-2 w-full rounded-2xl bg-gray-400 bg-cover bg-center text-white sm:w-2/5" style="background-image: url(/images/Vd9EQVZZRa9vVAMWfadpV.png)"></div>
-    <div class="w-full sm:w-3/5">
-      <div class="p-8">
-        <h1 class="text-3xl font-black text-slate-700">Sign up</h1>
-        <p class="mt-2 mb-5 text-base leading-tight text-gray-600">Create an account to get access to 1000+ Freebies</p>
-        <form class="mt-8">
-          <div class="relative mt-2 w-full">
-            <input type="text" id="email" value="email@gmail.com" class="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" " />
-            <label for="email" class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"> Enter Your Email </label>
-          </div>
-          <div class="relative mt-2 w-full">
-            <input type="text" id="password" class="border-1 peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" " />
-            <label for="password" class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600"> Enter Your Password</label>
-          </div>
-          <input class="mt-4 w-full cursor-pointer rounded-lg bg-blue-600 pt-3 pb-3 text-white shadow-lg hover:bg-blue-400" type="submit" value="Create account" />
-        </form>
-        <div class="mt-4 text-center">
-          <p class="text-sm text-gray-600">Already have an account? <a href="/login" class="font-bold text-blue-600 no-underline hover:text-blue-400">Sign in</a></p>
+    <div class="flex min-h-screen w-screen w-full items-center justify-center text-gray-600 bg-gray-50">
+        <div class="relative mt-8">
+  
+            <div class="hidden sm:block h-56 w-56 text-indigo-300 absolute a-z-10 -left-20 -top-20">
+                <svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'>
+                    <defs>
+                        <pattern id='a' patternUnits='userSpaceOnUse' width='40' height='40'
+                            patternTransform='scale(0.6) rotate(0)'>
+                            <rect x='0' y='0' width='100%' height='100%' fill='none' />
+                            <path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5' stroke-width='1' stroke='none'
+                                fill='currentColor' />
+                        </pattern>
+                    </defs>
+                    <rect width='800%' height='800%' transform='translate(0,0)' fill='url(#a)' />
+                </svg>
+            </div>
+            <div class="hidden sm:block h-28 w-28 text-indigo-300 absolute a-z-10 -right-20 -bottom-20">
+                <svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'>
+                    <defs>
+                        <pattern id='b' patternUnits='userSpaceOnUse' width='40' height='40'
+                            patternTransform='scale(0.5) rotate(0)'>
+                            <rect x='0' y='0' width='100%' height='100%' fill='none' />
+                            <path d='M11 6a5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5 5 5 0 015 5' stroke-width='1' stroke='none'
+                                fill='currentColor' />
+                        </pattern>
+                    </defs>
+                    <rect width='800%' height='800%' transform='translate(0,0)' fill='url(#b)' />
+                </svg>
+            </div>
+            <!-- Register -->
+            <div class="relative flex flex-col sm:w-[30rem] rounded-lg border-gray-400 bg-white shadow-lg px-4">
+                <div class="flex-auto p-6">
+                    <!-- Logo -->
+                    <div class="mb-10 flex flex-shrink-0 flex-grow-0 items-center justify-center overflow-hidden">
+                        <a href="#"
+                            class="flex cursor-pointer items-center gap-2 text-indigo-500 no-underline hover:text-indigo-500">
+                            <span
+                                class="flex-shrink-0 text-3xl font-black lowercase tracking-tight opacity-100">KCStore</span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-2 font-medium text-gray-700 xl:text-xl">Welcome to KCStore!</h4>
+                    <p class="mb-6 text-gray-500">Please sign-in to access your account</p>
+  
+                    <form id="" class="mb-4" @submit.prevent="performLogin">
+                      <div class="mb-4">
+                            <label for="name" class="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Name</label>
+                            <input type="text"
+                                class="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                                id="name" v-model="name" placeholder="Enter your name" autofocus="" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Email</label>
+                            <input type="text"
+                                class="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                                id="email" v-model="email" placeholder="Enter your email" autofocus="" />
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between">
+                                <label class="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
+                                    for="password">Password</label>
+                                <a href="auth-forgot-password-basic.html"
+                                    class="cursor-pointer text-indigo-500 no-underline hover:text-indigo-500">
+                                    <small class=" ">Forgot Password?</small>
+                                </a>
+                            </div>
+                            <div class="relative flex w-full flex-wrap items-stretch">
+                                <input type="password" id="password"
+                                    class="relative block flex-auto cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                                    v-model="password" placeholder="············" />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between">
+                                <label class="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
+                                    for="password">Confirm Password</label>
+                            </div>
+                            <div class="relative flex w-full flex-wrap items-stretch">
+                                <input type="password" id="password"
+                                    class="relative block flex-auto cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                                    v-model="password" placeholder="············" />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Phone</label>
+                            <input type="text"
+                                class="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                                id="phone" v-model="phone" placeholder="Enter your phone" autofocus="" />
+                        </div>
+                        <div class="mb-4">
+                            <div class="block">
+                                <input
+                                    class="mt-1 mr-2 h-5 w-5 appearance-none rounded border border-gray-300 bg-contain bg-no-repeat align-top text-black shadow checked:bg-indigo-500 focus:border-indigo-500 focus:shadow"
+                                    type="checkbox" id="remember-me"
+                                    style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 10l3 3l6-6'/%3e%3c/svg%3e&quot;)"
+                                    checked />
+                                <label class="inline-block" for="remember-me"> Remember Me </label>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <button
+                                class="grid w-full cursor-pointer select-none rounded-md border border-indigo-500 bg-indigo-500 py-2 px-5 text-center align-middle text-sm text-white shadow hover:border-indigo-600 hover:bg-indigo-600 hover:text-white focus:border-indigo-600 focus:bg-indigo-600 focus:text-white focus:shadow-none"
+                                type="submit">Sign in</button>
+                        </div>
+                    </form>
+  
+                    <p class="mb-4 text-center">
+                        New on kcstore?
+                        <a href="/login" class="cursor-pointer text-indigo-500 no-underline hover:text-indigo-500"> Login </a>
+                    </p>
+                </div>
+            </div>
+            <!-- /Register -->
         </div>
-      </div>
     </div>
-  </div>
-</div>
-</template>
+  </template>
+  
+  <script>
+  import { mapActions } from 'vuex';
+  
+  export default {
+    data() {
+        return {
+            name: '',
+            email: '',
+            password: '',
+            confirm_password:'',
+            phone:'',
+  
+        };
+    },
+    methods: {
+        ...mapActions('auth', ['login']),
+        async performLogin() {
+            const credentials = {
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                confirm_password: this.confirm_password,
+                phone: this.phone
+            };
+  
+            const success = await this.login(credentials);
+  
+            if (success) {
+                // Redirect to the desired route on successful login
+                this.$router.push('/');
+            } else {
+                alert("Login Failed");
+            }
+        },
+    },
+  };
+  </script>

@@ -49,7 +49,7 @@
                                 or Username</label>
                             <input type="text"
                                 class="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                                id="email" v-model="username" placeholder="Enter your email or username" autofocus="" />
+                                id="email" v-model="email" placeholder="Enter your email or email" autofocus="" />
                         </div>
                         <div class="mb-4">
                             <div class="flex justify-between">
@@ -96,30 +96,38 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
     data() {
         return {
-            username: '',
+            email: '',
             password: '',
         };
+    },
+    computed: {
+        ...mapGetters('auth', ['loginError', 'isAuthenticated']),
     },
     methods: {
         ...mapActions('auth', ['login']),
         async performLogin() {
             const credentials = {
-                username: this.username,
+                email: this.email,
                 password: this.password,
             };
 
             const success = await this.login(credentials);
 
-            if (success) {
+            if (success && this.isAuthenticated) {
                 // Redirect to the desired route on successful login
                 this.$router.push('/');
             } else {
-                alert("Login Failed");
+                //handle login error
+                if (this.loginError) {
+                    alert(this.loginError);
+                } else {
+                    alert("Login Failed");
+                }
             }
         },
     },

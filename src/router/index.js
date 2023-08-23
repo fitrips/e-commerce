@@ -6,7 +6,11 @@ import Produk from "../views/Produk.vue";
 import SingleProduk from "../views/SingleProduk.vue";
 import Cart from "../views/Cart.vue";
 import Checkout from "../views/Checkout.vue";
-import Contact from "../views/Contact.vue"
+import Contact from "../views/Contact.vue";
+import Brands from "../views/Brands.vue";
+import Category from "../views/Category.vue";
+import Profile from "../views/Profile.vue";
+
 
 const routes = [
     {
@@ -50,6 +54,22 @@ const routes = [
         name: "Contact",
         component: Contact,
     },
+    {
+        path: "/brands",
+        name: "Brands",
+        component: Brands,
+    },
+    {
+        path: "/category",
+        name: "Category",
+        component: Category,
+    },
+    {
+        path: "/profile",
+        name: "Profile",
+        component: Profile,
+    },
+
 
 ];
 
