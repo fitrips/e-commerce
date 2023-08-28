@@ -43,7 +43,7 @@
                             <div class="lg:order-2 lg:ml-5">
                                 <div class="max-w-xl overflow-hidden rounded-lg">
                                     <img class="h-full w-full max-w-full object-cover"
-                                        src="../assets/img/cincin2.jpg"
+                                        src="../assets/img/gelang8.webp"
                                         alt="" />
                                 </div>
                             </div>
@@ -53,19 +53,19 @@
                                     <button type="button"
                                         class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center">
                                         <img class="h-full w-full object-cover"
-                                            src="../assets/img/cincin2.jpg"
+                                            src="../assets/img/gelang8.webp"
                                             alt="" />
                                     </button>
                                     <button type="button"
                                         class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center">
                                         <img class="h-full w-full object-cover"
-                                            src="../assets/img/cincin2.jpg"
+                                            src="../assets/img/gelang8.webp"
                                             alt="" />
                                     </button>
                                     <button type="button"
                                         class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center">
                                         <img class="h-full w-full object-cover"
-                                            src="../assets/img/cincin2.jpg"
+                                            src="../assets/img/gelang8.webp"
                                             alt="" />
                                     </button>
                                 </div>
@@ -140,7 +140,7 @@
                         <div
                             class="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
                             <div class="flex items-end">
-                                <h1 class="text-3xl font-bold">${{ product.base_price }}</h1>
+                                <h1 class="text-3xl font-bold">Rp.{{ product.base_price }}</h1>
                                 <!-- <span class="text-base">/month</span> -->
                             </div>
                             <div v-if="token">
@@ -206,10 +206,12 @@
 
                             </nav>
                         </div>
-
                         <div class="mt-8 flow-root sm:mt-12 flex justify-stretch">
                             <p class="mt-4 justify-normal">{{ product.metaTitle }}</p>
+                            <p class="text-left text-gray-500 dark:text-gray-400">Our New Collection: This jewelry with crystal details makes your look even more elegant. Now you can get it at our official store, order now and make sure your jewelry is guaranteed authenticity.</p>
+
                         </div>
+          
                     </div>
                 </div>
             </div>

@@ -106,7 +106,7 @@
                   </label>
               </div>
               <div class="relative">
-                  <input class="peer hidden" id="radio_4" type="radio" value="cash_on_delivery" v-model="deliveryType" />
+                  <input class="peer hidden" id="radio_4" type="radio" value="payment_wallet" v-model="paymentType" />
                   <span
                       class="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -123,7 +123,7 @@
               </div>
           </form>
       </div>
-      <div class="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+      <div class="mt-10 bg-gray-100 px-4 pt-8 lg:mt-0">
           <p class="text-xl font-medium">Payment Details</p>
           <p class="text-gray-400">Complete your order by providing your payment details.</p>
           <div class="">
@@ -140,7 +140,7 @@
                       </svg>
                   </div>
               </div>
-              <label for="card-holder" class="mt-4 mb-2 block text-sm font-medium">Card Holder</label>
+              <!-- <label for="card-holder" class="mt-4 mb-2 block text-sm font-medium">Card Holder</label>
               <div class="relative">
                   <input type="text" id="card-holder" name="card-holder"
                       class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -175,36 +175,29 @@
                   <input type="text" name="credit-cvc"
                       class="w-1/6 flex-shrink-0 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                       placeholder="CVC" />
-              </div>
-              <label for="billing-address" class="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
-              <div class="flex flex-col sm:flex-row">
-                  <div class="relative flex-shrink-0 sm:w-7/12">
-                      <input type="text" id="billing-address" name="billing-address"
-                          class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Street Address" />
-                      <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                          <img class="h-4 w-4 object-contain"
-                              src="https://flagpack.xyz/_nuxt/4c829b6c0131de7162790d2f897a90fd.svg" alt="" />
-                      </div>
+              </div> -->
+              <div class="">
+              <label for="alamat" class="mt-4 mb-2 block text-sm font-medium">Alamat</label>
+              <div class="relative">
+                <input type="text" id="email" name="email"
+                      class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="your address" />
+                  <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt text-gray-400" viewBox="0 0 16 16"> <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/> 
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/> </svg>
                   </div>
-                  <select type="text" name="billing-state"
-                      class="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
-                      <option value="State">State</option>
-                  </select>
-                  <input type="text" name="billing-zip"
-                      class="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                      placeholder="ZIP" />
+              </div>
               </div>
 
               <!-- Total -->
               <div class="mt-6 border-t border-b py-2">
                   <div class="flex items-center justify-between">
                       <p class="text-sm font-medium text-gray-900">Subtotal</p>
-                      <p class="font-semibold text-gray-900">$399.00</p>
+                      <p class="font-semibold text-gray-900">Rp. {{ totalHarga() }}</p>
                   </div>
                   <div class="flex items-center justify-between">
                       <p class="text-sm font-medium text-gray-900">Shipping</p>
-                      <p class="font-semibold text-gray-900">$8.00</p>
+                      <p class="font-semibold text-gray-900">$0.00</p>
                   </div>
               </div>
               <div class="mt-6 flex items-center justify-between">
@@ -212,8 +205,10 @@
                   <p class="text-2xl font-semibold text-gray-900">Rp.{{ totalHarga() }}</p>
               </div>
           </div>
+          <router-link to="/order">
           <button @click="performCheckout"
               class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
+          </router-link>
       </div>
   </div>
 </template>
@@ -230,6 +225,7 @@ export default {
   },
   computed: {
       ...mapGetters('cart', ['getCart']),
+      ...mapGetters('cart', ['getCheckout']),
 
   },
   methods: {
@@ -261,8 +257,11 @@ export default {
               cart_item_ids: cartItemIds
           };
 
-          // Call the checkout action with the collected IDs and user address
-          await this.$store.dispatch('cart/checkoutCart', checkoutPayload);
+            // Call the checkout action with the collected IDs and user address
+            await this.$store.dispatch('cart/checkoutCart', checkoutPayload)
+           .then(() => {
+              this.$router.push(`/order/${this.getCheckout.order_code}`);
+            });
       }
   },
   beforeMount() {

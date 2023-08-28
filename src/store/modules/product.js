@@ -52,6 +52,7 @@ const produk = {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
             }
             });
+            alert("Successfully Added Data")
             commit("ADD_TO_CART", response.data)
             console.log(response.data)
         } catch (error) {

@@ -6,10 +6,13 @@ const auth = {
     token: localStorage.getItem("token") || "",
     loginError: null,
     user: JSON.stringify(localStorage.getItem("user") || null),
+    userAddress: [],
+    user: []
   },
   getters: {
     isAuthenticated: (state) => !!state.token,
     getUser: (state) => state.user,
+    gettersUserAddress: (state) => state.userAddress
   },
   actions: {
     async login({ commit }, credentials) {
@@ -54,7 +57,7 @@ const auth = {
         return false;
       }
     },
-    async getUserInfo({ state }) {
+    async getUserInfo({ state, commit}) {
       try {
         const response = await axios.get(
           "https://ecommerce.olipiskandar.com/api/v1/user/info",
@@ -64,28 +67,29 @@ const auth = {
             },
           }
         );
+        commit('SET_USER', response.data)
         return response.data.user;
       } catch (error) {
         console.error(error);
         return null;
       }
     },
-    async getUserAddress({ state }) {
-      try {
-        const response = await axios.get(
-          "https://ecommerce.olipiskandar.com/api/v1/user/addresses",
-          {
+    async getUserAddress({ state,commit }) {
+        try {
+          const urlAddresses =
+            'https://ecommerce.olipiskandar.com/api/v1/user/addresses';
+          const response = await axios.get(urlAddresses, {
             headers: {
-              Authorization: `Bearer ${state.token}`,
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
-          }
-        );
-        return response.data;
-      } catch (error) {
-        console.error(error);
-        return null;
-      }
-    },
+          });
+          commit('SET_ADDRESS', response.data)
+          return response.data;
+        } catch (error) {
+          console.error(error);
+          return null;
+        }
+      },
 
     logout({ commit }) {
       // Remove token from localStorage
@@ -110,7 +114,10 @@ const auth = {
     SET_USER(state, user) {
       state.user = user;
       // console.log("User data stored in store:", user);
-    }
+    },
+    SET_ADDRESS(state, address) {
+        state.userAddress = address;
+      }
   },
 };
 
