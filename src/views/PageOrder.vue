@@ -5,7 +5,7 @@
             <h1 class="text-3xl font-bold pt-10">Terimakasih Telah Memesan</h1>
             <p>Kode Pemesanan : {{ getOrder.code }}</p>
             <p class="italic">
-              Terimakasih atas kepercayaan Tn./Ny. {{ getOrder.user.name }} kepada ArtisanAlley
+              Terimakasih atas kepercayaan Tn./Ny. {{ getOrder.user.name }} kepada Harry Winston
             </p>
           </div>
           <div class="mx-10 mt-10">
